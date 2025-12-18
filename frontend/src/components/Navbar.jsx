@@ -1,11 +1,13 @@
 import React from "react";
-
+import Login from "../pages/Login.jsx"
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
-    <div className="max-w-screen-2xl container mx-auto px-2 md:px-20 px-4 z-10 flex fixed top-4 left-0 right-0  gap-12   " >
+    <div className="max-w-screen-2xl container mx-auto px-2 md:px-20 px-4 z-10 flex fixed top-4 left-0 right-0  gap-  flex flex-wrap " >
       <div className="flex-1">
-        <a  className="btn btn-ghost text-4xl">Coinmap</a>
+        <a className="btn btn-ghost text-4xl">Coinmap</a>
       </div>
 
       <div className="flex items-center gap-3 sm:gap-6 md:gap-10">
@@ -32,8 +34,8 @@ const Navbar = () => {
             <li><a>INR</a></li>
           </ul>
         </div>
-        <div className="login">
-          <button className="btn bg-purple-200 text-black rounded-2xl px-4 sm:px-6">Login</button>
+        <div className="login" >
+          <button className="btn bg-purple-200 text-black rounded-2xl px-4 sm:px-6" onClick={() => navigate("/Login")}  >Login</button> 
         </div>
       </div>
     </div>

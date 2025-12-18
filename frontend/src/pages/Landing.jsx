@@ -9,9 +9,9 @@ const Landing = () => {
     <>
       <Navbar />
       <div className="content pt-30">
-      <Info/>
-      <Tabs />
-      <Footer />
+        <Info />
+        <Tabs />
+        <Footer />
       </div>
     </>
   )
