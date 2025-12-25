@@ -4,10 +4,25 @@ const COINGECKOAPI = "https://api.coingecko.com/api/v3";
 
 const LIMIT = 99;
 
+let topcoincache = {};
+let topcoincachetime = null;
+
+const cacheduration = 5* 60* 1000;
+
 export const getMarketCoins = async (req, res) => {
 
     try {
         const setlimit = Number(req.query.LIMIT) || LIMIT;
+        const now = Date.now()
+
+        if(topcoincache && topcoincachetime && now - topcoincachetime < cacheduration){
+             console.log(`✅ Using cached top coins (age: ${Math.round((now - topcoincachetime) / 1000)}s)`);
+            return res.json({
+                success: true,
+                data: topcoincache,
+                cached: true,
+            });
+        }
 
         const response = await axios.get(`${COINGECKOAPI}/coins/markets`, {
             params: {
@@ -21,12 +36,26 @@ export const getMarketCoins = async (req, res) => {
 
         })
 
+        topcoincache = response.data;
+        topcoincache = now;
+
         return res.json({
             success: true,
             data: response.data,
         })
     } catch (error) {
         console.error("Error fetching market coins:", error.message);
+
+        if (topcoincache) {
+            console.warn("API failed, returning cached data");
+            return res.json({
+                success: true,
+                data: topcoincache,
+                cached: true,
+                message: "Using cached data (API unavailable)",
+            });
+        }
+
         return res.status(500).json({
             success: false,
             message: "Failed to fetch market coins",

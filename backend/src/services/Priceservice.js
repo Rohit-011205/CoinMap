@@ -100,10 +100,10 @@
       if (error.response?.status === 429) {
         console.warn("Rate limited by CoinGecko");
         // if you have cache, you can return it here
-        return {};
+        return marketdatacache;
       }
 
       // For any other error, just return empty so code can use stored price
-      return {};
+      return marketdatacache;
     }
   }
