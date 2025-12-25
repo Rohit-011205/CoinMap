@@ -10,6 +10,8 @@ import PrivateRoute from './function/Privateroute.jsx'
 import Signup from './pages/Signup.jsx'
 // import HomePageD from './pages/HomePageD.jsx'
 import DashboardLayout from './Layouts/DashboardLayout.jsx'
+import Holding from './pages/Holding.jsx'
+import MarketCoins from './pages/MarketCoins.jsx'
 
 
 function App() {
@@ -26,14 +28,26 @@ function App() {
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Layout" element={<DashboardLayout />} />
 
-         <Route element={<PrivateRoute />}>
+        <Route element={<PrivateRoute />}>
           <Route element={<DashboardLayout />}>
             <Route path="/Dashboard" element={<Dashboard />} />
-            {/* <Route path="/Market" element={<Market />} /> */}
+            <Route path="/MarketCoins" element={<MarketCoins />} />
+            <Route path="/Holding" element={<Holding />} />
             {/* <Route path="/Portfolio" element={<Portfolio />} /> */}
           </Route>
         </Route>
+        {/* <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />   */}
+
+
       </Routes>
+
 
 
       <Toaster

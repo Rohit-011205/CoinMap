@@ -18,18 +18,28 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+    verificationCode: {
+        type: String,  // store the 6-digit code
+    },
+    verificationCodeExpires: {
+        type: Date,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
     }
 })
 
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function (){
 
-   
-        if (!this.isModified("password")) return next();
-       const hashed = await bcrypt.hash(this.password, 10);
-        this.password = hashed
+
+    if (!this.isModified("password")) return ;
+    const hashed = await bcrypt.hash(this.password, 10);
+    this.password = hashed
     //    return next();
     //  next()
 });

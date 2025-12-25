@@ -3,14 +3,17 @@ import Navbar from '../components/Navbar.jsx'
 import Info from '../components/Info.jsx'
 import Footer from '../components/Footer.jsx'
 import Tabs from '../components/Tabs.jsx'
+import HomeTabs from '../components/Hometabs.jsx'
+import Features from '../components/Features.jsx'
 
 const Landing = () => {
   return (
     <>
       <Navbar />
-      <div className="content pt-30">
+      <div className="content ">
         <Info />
-        <Tabs />
+        <Features />
+        <HomeTabs />
         <Footer />
       </div>
     </>

@@ -1,16 +1,17 @@
 import {
   LayoutDashboard,
-  LineChart,
+  Heart,
   Wallet,
-  Globe,
-  Settings,
   ChevronFirst,
-  ChevronLast,
+  Bitcoin,
+  ChevronLast, LogOut,
 } from "lucide-react";
 import { createContext, useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import ph from "../assets/ph.png";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SidebarContext = createContext();
 
@@ -26,23 +27,34 @@ export default function Sidebar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const user = {
-    name: "Rohit Kadam",
-    image: ph,
-  };
+ const storedUser = localStorage.getItem("user");
+  const parsed = storedUser ? JSON.parse(storedUser) : null;
+  const user = parsed || { username: "Guest" };
 
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to logout?")) {
+      localStorage.removeItem("token");
+      toast.success("Logged out successfully");
+      navigate("/Login");
+    }
+  }
+
+
+ 
   const links = [
     { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
-    { name: "Market", path: "/market", icon: LineChart },
-    { name: "Portfolio", path: "/portfolio", icon: Wallet },
-    { name: "Global", path: "/global", icon: Globe },
-    { name: "Settings", path: "/settings", icon: Settings },
+    { name: "Holdings", path: "/Holding", icon: Wallet },
+    // { name: "Watchlist", path: "/Holdin ", icon: Heart },
+    { name: "Market Coins", path: "/MarketCoins", icon: Bitcoin },
   ];
 
   return (
     <aside
       className={`fixed top-16 left-0 h-[calc(100vh-64px)]
-      ${expanded ? "w-60" : "w-16"} transition-all duration-300`}
+      ${expanded ? "w-60" : "w-16"} transition-all duration-300 z-[99999]`}
     >
       <nav className="h-full flex flex-col bg-transparent border-r border-purple-500/20 shadow-md">
 
@@ -52,7 +64,7 @@ export default function Sidebar() {
             className={`text-white text-sm font-medium transition-all overflow-hidden
             ${expanded ? "w-auto" : "w-0"}`}
           >
-            {user.name}
+            {user.username  }
           </p>
 
           <button
@@ -77,21 +89,24 @@ export default function Sidebar() {
           </ul>
         </SidebarContext.Provider>
 
-        {/* User */}
-        <div className="border-t border-purple-500/20 flex items-center p-3">
-          <img
-            src={user.image}
-            className="w-10 h-10 rounded-full ring-2 ring-purple-500/40"
-            alt="User"
-          />
 
-          <div
-            className={`overflow-hidden transition-all
-            ${expanded ? "w-40 ml-3" : "w-0"}`}
+        {/* User */}
+        <div className="p-4">
+           <button
+            onClick={handleLogout}
+            className={`group flex items-center gap-3 py-3 px-3 rounded-xl border border-zinc-800 hover:border-red-900/50 hover:bg-red-950/10 transition-all duration-300 
+              ${expanded ? "w-full justify-start" : "w-full justify-center"}`}
           >
-            <p className="text-xs text-gray-400">Crypto User</p>
-          </div>
+            <LogOut size={16} className="text-zinc-500 group-hover:text-red-500" />
+            {expanded && (
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white-500 group-hover:text-red-500">
+                Terminate
+              </span>
+            )}
+          </button>
         </div>
+
+
       </nav>
     </aside>
   );
@@ -127,5 +142,6 @@ function SidebarItem({ icon, text, to }) {
         </span>
       )}
     </NavLink>
+
   );
 }

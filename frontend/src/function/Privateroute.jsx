@@ -5,10 +5,11 @@ const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token")
 
     if(!token){
-        return <navigate to="/Login" replace />
+        return <Navigate to="/Login" replace />
     }
 
     return <Outlet />
+    return children;
 };
 
 export default PrivateRoute
