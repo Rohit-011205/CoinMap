@@ -4,7 +4,7 @@ const COINGECKOAPI = "https://api.coingecko.com/api/v3";
 
 const LIMIT = 99;
 
-let topcoincache = {};
+let topcoincache = null;
 let topcoincachetime = null;
 
 const cacheduration = 5* 60* 1000;
@@ -37,7 +37,7 @@ export const getMarketCoins = async (req, res) => {
         })
 
         topcoincache = response.data;
-        topcoincache = now;
+        topcoincachetime = now;
 
         return res.json({
             success: true,
