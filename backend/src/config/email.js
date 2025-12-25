@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
-import 'dotenv/config' 
+import { Resend } from 'resend';
+import 'dotenv/config'
 
 export const mailer = nodemailer.createTransport({
   service: "gmail",
@@ -14,10 +15,10 @@ export const generateCode = () => {
 };
 
 export const sendVerficationemail = async (email, code, username) => {
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: '✉️ CoinCollect - Email Verification Code',
+  const { data, error } = await resend.emails.send({
+    from: process.env.RESEND_FROM_EMAIL, // e.g. "CoinMap <no-reply@yourdomain.com>"
+    to: [email],
+    subject: '✉️ CoinMap - Email Verification Code',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #333;">Welcome to CoinMap! 🎉</h2>
@@ -25,7 +26,6 @@ export const sendVerficationemail = async (email, code, username) => {
         <p style="font-size: 16px; color: #666;">
           Thank you for signing up! Use the code below to verify your email address.
         </p>
-        
         <div style="margin: 30px 0; text-align: center;">
           <div style="background-color: #f0f0f0; padding: 20px; border-radius: 8px; display: inline-block;">
             <p style="font-size: 12px; color: #999; margin: 0 0 10px 0;">Verification Code</p>
@@ -34,11 +34,9 @@ export const sendVerficationemail = async (email, code, username) => {
             </p>
           </div>
         </div>
-        
         <p style="font-size: 14px; color: #666;">
           Enter this code in the verification screen to activate your account.
         </p>
-        
         <p style="font-size: 12px; color: #999; margin-top: 30px;">
           * This code expires in 10 minutes.<br/>
           * Never share this code with anyone.<br/>
@@ -46,7 +44,8 @@ export const sendVerficationemail = async (email, code, username) => {
         </p>
       </div>
     `,
-  };
+  });
 
-  return mailer.sendMail(mailOptions);
+  if (error) throw error;
+  return data;
 };

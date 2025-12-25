@@ -54,7 +54,11 @@
 
 
                     try {
+ 
+          const code = generateCode();
                         await sendVerficationemail(email, verificationCode, username)
+
+                        return res.status(201).json({ success: true, message: 'User created, verification email sent' });
                     } catch (emailError) {
                         console.error('Email send error FULL:', emailError);
                         return res.status(500).json({
