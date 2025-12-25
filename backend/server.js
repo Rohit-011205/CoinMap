@@ -15,6 +15,7 @@
   import { HistorySnapshot } from "./src/Snapshots/PortfolioSnapshots.js";
   import marketRoutes from "./src/routes/market.router.js"
   import { getMarketCoins } from "./src/controllers/market.controller.js";
+  import { generateCode,mailer } from "./src/config/email.js";
 
 
   dotenv.config();
