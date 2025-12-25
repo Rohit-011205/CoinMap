@@ -57,7 +57,7 @@ const Tabs = (onHoldingAdded) => {
           const priceChange = item.price_change_percentage_24h;
           const isUp = priceChange >= 0;
           
-          // Performance-based Glow and Border colors
+       
           const trendClass = isUp ? "text-emerald-400" : "text-rose-500";
           const glowClass = isUp 
             ? "hover:border-emerald-500/50 hover:shadow-[0_0_25px_-5px_rgba(52,211,153,0.2)]" 
@@ -68,7 +68,7 @@ const Tabs = (onHoldingAdded) => {
               key={item.id}
               className={`group relative bg-[#121214] border border-white/5 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 ${glowClass}`}
             >
-              {/* Quick Action Icons */}
+    
               <div className="absolute top-4 right-4 flex gap-3 z-20">
                 <button title="Watchlist" className="text-gray-600 hover:text-rose-500 transition-colors">
                   <FaHeart size={15} />
@@ -78,7 +78,6 @@ const Tabs = (onHoldingAdded) => {
                 </button>
               </div>
 
-              {/* Coin Info */}
               <div className="flex items-center gap-4 mb-6">
                 <div className=" p-2.5 rounded-xl shadow-inner">
                   <img
@@ -93,7 +92,7 @@ const Tabs = (onHoldingAdded) => {
                 </div>
               </div>
 
-              {/* Price Section */}
+  
               <div className="mb-6">
                 <div className="text-2xl font-black tracking-tight text-white">
                   ${item.current_price.toLocaleString()}
@@ -104,7 +103,6 @@ const Tabs = (onHoldingAdded) => {
                 </div>
               </div>
 
-              {/* Minimalist Stats Footer */}
               <div className="flex justify-between items-center pt-4 border-t border-white/5">
                 <div className="flex flex-col">
                   <span className="text-[10px] text-gray-600 font-bold uppercase tracking-tighter">Market Cap</span>
@@ -134,97 +132,3 @@ const Tabs = (onHoldingAdded) => {
 };
 
 export default Tabs;
-// import React, { useEffect, useState } from 'react'
-// import axios, { Axios } from 'axios'
-// import { IoIosTrendingUp } from "react-icons/io";
-// import { IoIosTrendingDown } from "react-icons/io";
-
-
-// const Tabs = () => {
-//   const [coins, setCoins] = useState([])
-//   useEffect(() => {
-
-//     axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd")
-
-//       .then((response) => {
-//         console.log(response.data)
-//         setCoins(response.data);
-//       })
-//       .catch((error) => {
-//         console.log(error.message)
-        
-
-//       })
-
-//   }, [])
-
-//   return (
-//     <div className="mt-10 p-4 bg-base-200">
-//       {/* <h2 className="text-xl font-bold mb-4">Market Coins</h2> */}
-
-//       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-
-//         {coins.map((item) => {
-//           const priceChange = item.price_change_percentage_24h;
-//           const isUp = priceChange >= 0;
-//           const trendColor = isUp ? "text-green-500" : "text-red-500";
-//           const borderColor = isUp ? "hover:border-green-500" : "hover:border-red-500";
-
-//           return (
-//             <div
-//               key={item.id}
-//               className={`card bg-base-100 shadow-md border border-transparent ${borderColor} transition-all duration-300`}
-//             >
-//               {/* Coin Image */}
-//               <figure className="pt-6">
-//                 <img
-//                   src={item.image}
-//                   alt={item.name}
-//                   className="h-16 w-16 object-contain"
-//                 />
-//               </figure>
-
-//               {/* Content */}
-//               <div className="card-body items-center text-center p-4 space-y-2">
-//                 {/* Name */}
-//                 <h2 className="card-title text-base font-semibold">
-//                   {item.name}
-//                 </h2>
-
-//                 {/* Symbol */}
-//                 <p className="uppercase text-sm text-gray-400">
-//                   {item.symbol}
-//                 </p>
-
-//                 {/* Price */}
-//                 <p className="text-lg font-bold">
-//                   ${item.current_price}
-//                 </p>
-//                 <p className="total-volume text-white">
-//                   Total Volume : {item.total_volume.toLocaleString()}
-//                 </p>
-//                 <p className="total-volume text-white">
-//                   Market_cap : ${item.market_cap.toLocaleString()}
-//                 </p>
-
-
-//                 {/* Price Change */}
-//                 <div className={`flex items-center gap-3 ${trendColor} font-medium`} >
-//                   <span>
-//                     {priceChange != null ? priceChange.toFixed(2) : "N/A"}%
-//                   </span>
-//                   <span className='text-3xl'>
-//                   {isUp ? <IoIosTrendingUp /> : <IoIosTrendingDown />}
-//                   </span>
-//                 </div>
-//               </div>
-//             </div>
-//           );
-//         })}
-
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Tabs

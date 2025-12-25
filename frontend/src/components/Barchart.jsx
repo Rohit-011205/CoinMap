@@ -33,7 +33,7 @@ const Barchart = () => {
                     return {
                         symbol: h.symbol,
                         invested,
-                        // These fields are for the stacked bar logic
+                    
                         profit: pnl > 0 ? pnl : 0,
                         loss: pnl < 0 ? Math.abs(pnl) : 0,
                         pnl,

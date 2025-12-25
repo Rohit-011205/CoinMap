@@ -210,7 +210,7 @@ const Tablehold = ({ data = [], onDataChange }) => {
           </table>
         </div>
 
-        {/* ================= MOBILE CARDS ================= */}
+       
         <div className="md:hidden space-y-4">
         {holdings.map((h) => {
           const isEditing = editid === h._id;
@@ -231,7 +231,7 @@ const Tablehold = ({ data = [], onDataChange }) => {
                 </div>
               </div>
 
-              {/* Editable Fields for Mobile */}
+        
               <div className="grid grid-cols-2 gap-4 py-4 border-t border-white/5">
                 <div>
                   <p className="text-[9px] uppercase tracking-widest text-zinc-500 mb-1">Quantity</p>
@@ -251,7 +251,7 @@ const Tablehold = ({ data = [], onDataChange }) => {
                 </div>
               </div>
 
-              {/* Mobile Action Buttons */}
+  
               <div className="flex gap-2 pt-4">
                 {isEditing ? (
                   <>
@@ -274,193 +274,3 @@ const Tablehold = ({ data = [], onDataChange }) => {
   };
 
 export default Tablehold;
-// import React, { useEffect, useState } from "react";
-// import { Trash2, Edit2 } from "lucide-react";
-// import toast from "react-hot-toast";
-// import API from "../API";
-
-// const Tablehold = ({ data = [], onDataChange }) => {
-//   const [holdings, setHoldings] = useState([]);
-//   const [loading, setLoading] = useState(false);
-
-//   useEffect(() => {
-//     setHoldings(Array.isArray(data) ? data : []);
-//   }, [data]);
-
-//   const handleDelete = async (id) => {
-//     if (!window.confirm("Are you sure you want to delete this holding?")) return;
-
-//     try {
-//       setLoading(true);
-//       const res = await API.delete(`/holdings/${id}`);
-
-//       if (res.data.success) {
-//         toast.success("Holding deleted");
-//         onDataChange?.();
-//       }
-//     } catch (err) {
-//       toast.error(err.response?.data?.message || "Delete failed");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   if (!holdings.length) {
-//     return (
-//       <div className="bg-[#1E1E2F] p-6 rounded-xl mt-6">
-//         <h2 className="text-white text-lg font-semibold mb-4">My Holdings</h2>
-//         <p className="text-gray-400 text-center py-6">
-//           No holdings yet. Add one to get started.
-//         </p>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="bg-[#1E1E2F] p-4 rounded-xl mt-6">
-//       <h2 className="text-white text-lg font-semibold mb-4">My Holdings</h2>
-
-//       {/* ================= DESKTOP TABLE ================= */}
-//       <div className="hidden md:block overflow-x-auto">
-//         <table className="min-w-full text-sm">
-//           <thead className="text-gray-400 border-b border-purple-500/20">
-//             <tr>
-//               <th className="py-3 px-2">Asset</th>
-//               <th className="py-3 px-2">Qty</th>
-//               <th className="py-3 px-2">Buy</th>
-//               <th className="py-3 px-2">Current</th>
-//               <th className="py-3 px-2">Value</th>
-//               <th className="py-3 px-2">P&L</th>
-//               <th className="py-3 px-2">P&L %</th>
-//               <th className="py-3 px-2">Actions</th>
-//             </tr>
-//           </thead>
-
-//           <tbody>
-//             {holdings.map((h) => {
-//               const pnl = h.pnl || 0;
-//               const isPositive = pnl >= 0;
-
-//               return (
-//                 <tr
-//                   key={h._id}
-//                   className="border-b border-purple-500/10 hover:bg-[#2A2A40]"
-//                 >
-//                   <td className="py-3 px-2 text-white">
-//                     <div className="font-semibold">{h.symbol}</div>
-//                     <div className="text-xs text-gray-400">{h.name}</div>
-//                   </td>
-
-//                   <td className="py-3 px-2 text-gray-300">{h.quantity}</td>
-//                   <td className="py-3 px-2 text-gray-300">
-//                     ${h.buyPrice?.toFixed(2)}
-//                   </td>
-//                   <td className="py-3 px-2 text-gray-300">
-//                     ${h.currentPrice?.toFixed(2)}
-//                   </td>
-//                   <td className="py-3 px-2 text-white font-semibold">
-//                     ${h.currentValue?.toFixed(2)}
-//                   </td>
-
-//                   <td
-//                     className={`py-3 px-2 font-semibold ${
-//                       isPositive ? "text-green-400" : "text-red-400"
-//                     }`}
-//                   >
-//                     {isPositive ? "+" : "-"}${Math.abs(pnl).toFixed(2)}
-//                   </td>
-
-//                   <td
-//                     className={`py-3 px-2 font-semibold ${
-//                       isPositive ? "text-green-400" : "text-red-400"
-//                     }`}
-//                   >
-//                     {h.pnlPercent?.toFixed(2)}%
-//                   </td>
-
-//                   <td className="py-3 px-2 flex gap-2">
-//                     <button className="p-2 bg-blue-600 rounded">
-//                       <Edit2 size={16} />
-//                     </button>
-//                     <button
-//                       onClick={() => handleDelete(h._id)}
-//                       disabled={loading}
-//                       className="p-2 bg-red-600 rounded"
-//                     >
-//                       <Trash2 size={16} />
-//                     </button>
-//                   </td>
-//                 </tr>
-//               );
-//             })}
-//           </tbody>
-//         </table>
-//       </div>
-
-//       {/* ================= MOBILE CARDS ================= */}
-//       <div className="md:hidden space-y-4">
-//         {holdings.map((h) => {
-//           const pnl = h.pnl || 0;
-//           const isPositive = pnl >= 0;
-
-//           return (
-//             <div
-//               key={h._id}
-//               className="bg-[#2A2A40] rounded-xl p-4 space-y-3"
-//             >
-//               <div className="flex justify-between">
-//                 <div>
-//                   <p className="text-white font-semibold">{h.symbol}</p>
-//                   <p className="text-xs text-gray-400">{h.name}</p>
-//                 </div>
-//                 <span
-//                   className={`font-semibold ${
-//                     isPositive ? "text-green-400" : "text-red-400"
-//                   }`}
-//                 >
-//                   {isPositive ? "+" : "-"}${Math.abs(pnl).toFixed(2)}
-//                 </span>
-//               </div>
-
-//               <div className="grid grid-cols-2 gap-3 text-xs text-gray-300">
-//                 <div>
-//                   <p className="text-gray-400">Quantity</p>
-//                   <p>{h.quantity}</p>
-//                 </div>
-//                 <div>
-//                   <p className="text-gray-400">Buy Price</p>
-//                   <p>${h.buyPrice?.toFixed(2)}</p>
-//                 </div>
-//                 <div>
-//                   <p className="text-gray-400">Current Price</p>
-//                   <p>${h.currentPrice?.toFixed(2)}</p>
-//                 </div>
-//                 <div>
-//                   <p className="text-gray-400">Value</p>
-//                   <p className="text-white font-semibold">
-//                     ${h.currentValue?.toFixed(2)}
-//                   </p>
-//                 </div>
-//               </div>
-
-//               <div className="flex gap-3 pt-2">
-//                 <button className="flex-1 bg-blue-600 py-2 rounded text-white">
-//                   Edit
-//                 </button>
-//                 <button
-//                   onClick={() => handleDelete(h._id)}
-//                   disabled={loading}
-//                   className="flex-1 bg-red-600 py-2 rounded text-white"
-//                 >
-//                   Delete
-//                 </button>
-//               </div>
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Tablehold;

@@ -45,12 +45,7 @@ const Navbartwo = () => {
         {/* Right Section */}
         <div className="flex items-center gap md:gap-2">
 
-          {/* Search */}
-          {/* <div className="absolute left-3 text-zinc-500 group-focus-within:text-purple-500 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div> */}
+         
           <div className="relative flex items-center group">
             <div className="absolute left-3 text-zinc-500 group-focus-within:text-purple-500 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -68,27 +63,26 @@ const Navbartwo = () => {
       "
             />
           </div>
-          {/* Profile Dropdown */}
+   
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
               className="relative flex items-center justify-center p-0.5 rounded-full hover:bg-white/5 transition-all outline-none"
             >
-              {/* Animated Gradient Border */}
+          
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-600/20 to-indigo-600/20 group-hover:from-purple-600/40 group-hover:to-indigo-600/40 transition-all"></div>
 
-              {/* The Avatar */}
+           
               <div className="relative w-9 h-9 rounded-full bg-[#050505] border border-white/10 flex items-center justify-center shadow-2xl overflow-hidden">
                 <span className="text-white font-serif italic text-sm tracking-tighter">
                   {firstLetter}
                 </span>
-                {/* Subtle Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] to-transparent pointer-events-none"></div>
               </div>
             </div>
 
-            {/* Luxury Dropdown Menu */}
+     
             <ul
               tabIndex={0}
               className="dropdown-content mt-4 p-2 shadow-2xl bg-[#0A0A0A] border border-zinc-800 rounded-xl w-44 text-zinc-400"

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import API from "../API";
 
 const VerificationModal = ({ email, isOpen, onClose, onVerified }) => {
   const [otp, setOtp] = useState(new Array(6).fill(""));
@@ -26,7 +27,7 @@ const VerificationModal = ({ email, isOpen, onClose, onVerified }) => {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/verifyemail", {
+      const res = await API.post("/auth/verifyemail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, code }),

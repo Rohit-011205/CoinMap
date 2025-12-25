@@ -27,16 +27,14 @@ const HomeTabs = () => {
 
             {/* <div className="back "> */}
 
-            {/* --- REDESIGNED HEADING SECTION --- */}
-            {/* --- LUXURY HEADING SECTION --- */}
-{/* --- MINIMALIST AESTHETIC HEADING --- */}
+            
 <div className="mb-16">
-  {/* Top Detail Line */}
+ 
   <div className="w-12 h-[1px] bg-purple-600 mb-8"></div>
   
   <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
     <div className="max-w-2xl">
-      {/* Small Status Label */}
+ 
       <div className="flex items-center gap-3 mb-4">
         <div className="flex items-center gap-2 px-2 py-1 bg-zinc-900/50 border border-zinc-800 rounded">
             <span className="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
@@ -54,7 +52,7 @@ const HomeTabs = () => {
       </p>
     </div>
 
-    {/* Refined Metric Display */}
+ 
     <div className="hidden md:block text-right">
       <div className="space-y-1">
         <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-semibold">Active Inventory</p>
@@ -64,13 +62,10 @@ const HomeTabs = () => {
       </div>
     </div>
   </div>
-  
-  {/* Bottom subtle divider */}
+
   <div className="w-full h-px bg-zinc-900 mt-10"></div>
 </div>
-{/* --- END HEADING --- */}
-            {/* --- END LUXURY HEADING SECTION --- */}
-            {/* --- END HEADING SECTION --- */}
+
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {displayCoins.map((item) => {
