@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosTrendingUp, IoIosTrendingDown } from "react-icons/io";
 import API from '../API';
+import { Slice } from 'lucide-react';
+
 
 const HomeTabs = () => {
     const [coins, setCoins] = useState([])
@@ -20,7 +22,9 @@ const HomeTabs = () => {
         fetchMarketCoins()
     }, []);
 
-    const displayCoins = show ? coins : coins.slice(0, 8);
+    const displayCoins = show 
+  ? (Array.isArray(coins) ? coins : []) 
+  : (Array.isArray(coins) ? coins.slice(0, 8) : []);
 
     return (
         <div className="mt-20 p-6 md:p-10 bg-transparent min-h-screen bg-transparent max-w-screen-2xl container mx-auto md:px-20 px-6">
