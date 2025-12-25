@@ -35,7 +35,7 @@ function Info() {
             </div>
 
           
-            <div className="mt-16 w-full lg:w-[40%] flex justify-center items-center order-1 lg:order-2">
+            <div className="mt-16 w-full lg:w-[30%] flex justify-center items-center order-1 lg:order-2">
 
                 <div className="relative mt-10 lg:mt-10 w-[200px] sm:w-[260px] md:w-[300px] lg:w-[360] max-w-[380px]">
 
