@@ -9,13 +9,15 @@ let topcoincachetime = null;
 
 const cacheduration = 5* 60* 1000;
 
+let isFetching = false;
+
 export const getMarketCoins = async (req, res) => {
 
     try {
         const setlimit = Number(req.query.LIMIT) || LIMIT;
         const now = Date.now()
 
-        if(topcoincache && topcoincachetime && now - topcoincachetime < cacheduration){
+        if(topcoincache && (isFetching || (topcoincachetime && now - topcoincachetime < cacheduration))){
              console.log(`✅ Using cached top coins (age: ${Math.round((now - topcoincachetime) / 1000)}s)`);
             return res.json({
                 success: true,
@@ -23,6 +25,8 @@ export const getMarketCoins = async (req, res) => {
                 cached: true,
             });
         }
+
+        isFetching= true
 
         const response = await axios.get(`${COINGECKOAPI}/coins/markets`, {
             params: {
@@ -33,17 +37,20 @@ export const getMarketCoins = async (req, res) => {
                 sparkline: false,
                 price_change_percentage: "24h",
             },
-
+         timeout: 10000
         })
 
         topcoincache = response.data;
         topcoincachetime = now;
+
+        isFetching = false
 
         return res.json({
             success: true,
             data: response.data,
         })
     } catch (error) {
+        isFetching = false
         console.error("Error fetching market coins:", error.message);
 
         if (topcoincache) {
