@@ -32,7 +32,7 @@ const assetSchema = new mongoose.Schema({
     },
     image: {
       type: String,
-      default: '', // URL to crypto icon
+      default: '', 
     },
 
 }, { timestamps: true })
