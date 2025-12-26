@@ -5,12 +5,12 @@ import 'dotenv/config'
 // const resend = new Resend(process.env.RESEND_API_KEY); 
 
 export const mailer = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
+  host: 'smtp-relay.brevo.com',
   port: 465,              
   secure: true,                 
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+  auth: { 
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
   },
   tls: {
     rejectUnauthorized: false
