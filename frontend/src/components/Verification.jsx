@@ -14,7 +14,7 @@ const VerificationModal = ({ email, isOpen, onClose, onVerified }) => {
     newOtp[index] = element.value;
     setOtp(newOtp);
 
-    // Move focus
+    
     if (element.nextSibling) {
       element.nextSibling.focus();
     }
@@ -28,11 +28,11 @@ const VerificationModal = ({ email, isOpen, onClose, onVerified }) => {
     setLoading(true);
     try {
       const res = await API.post("/auth/verifyemail", {
-      email,  // ✅ Just pass the data object directly
+      email,  
       code,
     });
 
-      const data = await res.json();
+      const data = await res.data;
       if (data.success) {
         toast.success(data.message || "Email verified!");
         onVerified();
@@ -50,7 +50,7 @@ const VerificationModal = ({ email, isOpen, onClose, onVerified }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      {/* Background blur */}
+
       <div
         className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
         onClick={onClose}
