@@ -28,10 +28,9 @@ const VerificationModal = ({ email, isOpen, onClose, onVerified }) => {
     setLoading(true);
     try {
       const res = await API.post("/auth/verifyemail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, code }),
-      });
+      email,  // ✅ Just pass the data object directly
+      code,
+    });
 
       const data = await res.json();
       if (data.success) {
