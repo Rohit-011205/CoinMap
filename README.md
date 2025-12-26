@@ -196,6 +196,7 @@ if (cacheTimestamp && Date.now() - cacheTimestamp < CACHE_DURATION) {
 // cachedData = fetchedData;
 // cacheTimestamp = Date.now();
 
+```
 ## 💻 Frontend Architecture
 
 | Category          | Technology                          |
