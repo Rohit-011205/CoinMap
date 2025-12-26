@@ -42,7 +42,8 @@
   app.use(cors({
     origin: [
       "http://localhost:5173",                
-      "https://coinmap-portfolio.vercel.app" 
+      "https://coinmap-portfolio.vercel.app",
+      "https://coinmap-provide.vercel.app/"
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
