@@ -23,7 +23,7 @@ export const generateCode = () => {
 
 export const sendVerficationemail = async (email, code, username) => {
    const mailOptions = {
-    from: `"CoinMap" <${process.env.EMAIL_USER}>`,
+    from: `"CoinMap" <${process.env.SENDER_EMAIL}>`,
     to: email,
     subject: '✉️ CoinMap - Email Verification Code',
     html: `
