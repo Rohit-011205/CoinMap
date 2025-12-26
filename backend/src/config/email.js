@@ -2,14 +2,19 @@ import nodemailer from 'nodemailer';
 import { Resend } from 'resend';
 import 'dotenv/config'
 
-const resend = new Resend(process.env.RESEND_API_KEY); 
+// const resend = new Resend(process.env.RESEND_API_KEY); 
 
 export const mailer = nodemailer.createTransport({
-  service: "gmail",
+  host: 'smtp.gmail.com',
+  port: 465,              
+  secure: true,                 
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
 export const generateCode = () => {
@@ -17,9 +22,9 @@ export const generateCode = () => {
 };
 
 export const sendVerficationemail = async (email, code, username) => {
-  const { data, error } = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL, // e.g. "CoinMap <no-reply@yourdomain.com>"
-    to: [email],
+   const mailOptions = {
+    from: `"CoinMap" <${process.env.EMAIL_USER}>`,
+    to: email,
     subject: '✉️ CoinMap - Email Verification Code',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -46,8 +51,14 @@ export const sendVerficationemail = async (email, code, username) => {
         </p>
       </div>
     `,
-  });
-
-  if (error) throw error;
-  return data;
+  };
+try {
+    // This is the line that actually sends the email
+    const info = await mailer.sendMail(mailOptions);
+    console.log("Email sent successfully:", info.messageId);
+    return { success: true, info };
+  } catch (error) {
+    console.error("Error sending email:", error);
+    throw error; // Rethrow so your auth controller can catch it
+  }
 };

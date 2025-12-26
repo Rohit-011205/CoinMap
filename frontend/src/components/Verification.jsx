@@ -32,7 +32,7 @@ const VerificationModal = ({ email, isOpen, onClose, onVerified }) => {
       code,
     });
 
-      const data = await res.data;
+      const data =  res.data;
       if (data.success) {
         toast.success(data.message || "Email verified!");
         onVerified();
