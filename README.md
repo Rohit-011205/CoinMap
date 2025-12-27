@@ -214,7 +214,7 @@ if (cacheTimestamp && Date.now() - cacheTimestamp < CACHE_DURATION) {
 ## 🚀 Deployment
 
 **Live Demo:**  
-https://coinmap-frontend.vercel.app *(replace with your latest deployed URL if needed)*
+(https://coinmap-provide.vercel.app/)
 
 ### Hosting & Infrastructure
 - **Frontend:** Vercel (auto-deploy from GitHub)
