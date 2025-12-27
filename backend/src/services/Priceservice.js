@@ -123,3 +123,5 @@ export const getMarketdata = async (symbols) => {
     return marketdatacache;
   }
 }
+
+export { globalMarketCache, globalCacheTime };

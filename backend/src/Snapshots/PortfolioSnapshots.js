@@ -2,7 +2,7 @@ import nodeCron from "node-cron";
 import PortfolioHistory from "../models/PortfoliohHstory.js";
 import User from "../models/user.model.js";
 import Holding from "../models/holding.model.js";
-import { getMarketdata } from "../services/Priceservice.js";
+import { getMarketdata,globalMarketCache, globalCacheTime } from "../services/Priceservice.js";
 import { calculatePortfolioMetrics } from "../services/Portfoliocalculator.js";
 
 
@@ -31,11 +31,11 @@ export const HistorySnapshot = () => {
       const allUsers = await User.find().select('_id');
 
       if (!allUsers || allUsers.length === 0) {
-        console.log('⚠️  No users found');
+        console.log('  No users found');
         return;
       }
 
-      console.log(`👥 Processing ${allUsers.length} users...`);
+      console.log(` Processing ${allUsers.length} users...`);
 
       const marketData = await getMarketdata(uniquesymbol);
 
