@@ -5,7 +5,11 @@ import Holding from "../models/holding.model.js";
 import { getMarketdata } from "../services/Priceservice.js";
 import { calculatePortfolioMetrics } from "../services/Portfoliocalculator.js";
 
+
+
+
 let snapshotJob;
+
 
 export const HistorySnapshot = () => {
   if (snapshotJob) return;
@@ -34,6 +38,11 @@ export const HistorySnapshot = () => {
       console.log(`👥 Processing ${allUsers.length} users...`);
 
       const marketData = await getMarketdata(uniquesymbol);
+
+
+      globalMarketCache = marketData;
+      globalCacheTime = Date.now();
+      console.log('🌍 Cron updated global market cache');
 
       // if (error.response?.status === 429) {
       //   console.warn("Rate limited! Serving stale data.");
