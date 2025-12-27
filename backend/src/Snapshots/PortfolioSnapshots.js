@@ -17,10 +17,10 @@ export const HistorySnapshot = () => {
     console.log("Starting Snapshot....", new Date().toISOString());
 
     const maxretry = 5;
-    let lastnullerr = null;
+    // let lastnullerr = null;
 
     for (let attempt = 1; attempt <= maxretry; attempt++) {
-      let marketData = null;
+      // let marketData = null;
 
       try {
         console.log(`📸 Snapshot attempt ${attempt}/${maxretry}`);
@@ -44,7 +44,7 @@ export const HistorySnapshot = () => {
 
         console.log(` Processing ${allUsers.length} users...`);
 
-        marketData = await getMarketdata(uniquesymbol);
+        let marketData = await getMarketdata(uniquesymbol);
 
         if (Object.keys(marketData).length === 0) {
           console.warn(` Empty market data on attempt ${attempt}/${maxretry}`);
@@ -138,8 +138,10 @@ export const HistorySnapshot = () => {
         }
 
         console.log('[SNAPSHOT JOB] Completed!');
-        return
-      } catch (error) {
+        return;
+      }
+      
+      catch (error) {
         console.error('[SNAPSHOT JOB] Fatal error:', error);
         continue
       }
