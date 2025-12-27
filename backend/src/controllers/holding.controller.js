@@ -150,7 +150,7 @@ export const PortfolioSummary = async (req, res) => {
             })
         }
 
-        const symbols = holdings.map(h => h.symbol.toUpperCase());
+        const symbols =[...new Set (holdings.map(h => h.symbol.toUpperCase()))];
 
         console.log("SYMBOLS:", symbols);
         console.log("TYPE:", typeof symbols[0]);
