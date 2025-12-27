@@ -14,25 +14,42 @@ CoinMap solves this by providing a **single, personalized dashboard** where port
 
 There is **no dependency on exchanges**, and user data remains **private and fully controlled** by the application owner.
 
+<img width="1919" height="910" alt="Screenshot 2025-12-27 103236" src="https://github.com/user-attachments/assets/59363a4c-c5e2-4729-8eae-82752fa4d8ea" />
+
+<img width="1919" height="898" alt="Screenshot 2025-12-27 103253" src="https://github.com/user-attachments/assets/a5369819-84e6-423b-a8fb-a43ef3921706" />
+
+
+
 ## 🛠️ What Does CoinMap Offer?
 
 ✅ **Real-time Portfolio Dashboard**  
 View total portfolio value, 24h change, and overall profit/loss at a glance.
+<img width="1919" height="905" alt="Screenshot 2025-12-27 103631" src="https://github.com/user-attachments/assets/656af060-c59e-4348-b11f-2c098210f78b" />
+
 
 ✅ **Live Market Data**  
 CoinGecko API integration with intelligent backend caching to prevent rate limits.
+<img width="1916" height="915" alt="image" src="https://github.com/user-attachments/assets/ff8a2a02-c30e-4454-b03b-14fcb638b3d2" />
+
 
 ✅ **Interactive Charts & Visualizations**  
 Line charts for portfolio value history and pie charts for asset allocation.
 
+<img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/829a09a3-e424-4e34-a219-2dfa0d051eb0" />
+
+
 ✅ **Holdings Management**  
 Add, edit, and delete crypto positions with accurate average buy price tracking.
+<img width="1919" height="916" alt="image" src="https://github.com/user-attachments/assets/57e778bb-d6e5-43ae-b09e-6835981bc2f8" />
+
 
 ✅ **P&L Calculations**  
 Automatic unrealized profit/loss calculation per asset and for the entire portfolio.
 
 ✅ **Secure Authentication**  
 JWT-based authentication with bcrypt password hashing and protected routes.
+<img width="1919" height="911" alt="image" src="https://github.com/user-attachments/assets/93331c14-7f12-4023-a6b4-5e4aeaedc599" />
+
 
 ✅ **Responsive Design**  
 Mobile-first UI built with Tailwind CSS and Recharts for data visualization.
@@ -162,6 +179,9 @@ This project significantly strengthened my confidence in building **end-to-end f
 - Protected portfolio routes
 - Persistent sessions using HTTP-only cookies
 - Secure logout functionality
+
+
+<img width="1917" height="906" alt="image" src="https://github.com/user-attachments/assets/6af8b259-46e5-4a08-927f-2b3a627cbca5" />
 
 
 ## ⚙️ Backend Architecture
