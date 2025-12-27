@@ -12,7 +12,7 @@
   let marketdatacache = {}
   let lastmarketdatacache = 0
 
-  const timestampmarketdata = 5 * 60 * 1000;
+  const timestampmarketdata = 15 * 60 * 1000;
 
   export const getMarketdata = async (symbols) => {
     try {

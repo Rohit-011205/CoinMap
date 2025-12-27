@@ -7,7 +7,7 @@ const LIMIT = 99;
 let topcoincache = null;
 let topcoincachetime = null;
 
-const cacheduration = 5* 60* 1000;
+const cacheduration = 15* 60* 1000;
 
 let isFetching = false;
 

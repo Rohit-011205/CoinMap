@@ -7,7 +7,7 @@ const COINGECKOAPI = "https://api.coingecko.com/api/v3";
 let coinlistcache = null
 let cachetimestampe = null
 
-const CACHEDURATION = 5 * 60 * 1000
+const CACHEDURATION = 15 * 60 * 1000
 
 const SYMBOL_ID_OVERRIDES = {
     BTC: "bitcoin",
