@@ -40,7 +40,7 @@
       if (IDs.length === 0) {
         console.warn("No Coin found ");
 
-        return {}
+        return marketdatacache || {};
       }
 
       console.log("Fetching market data for IDs:", IDs);
@@ -86,6 +86,9 @@
       marketdatacache = marketData;
       lastmarketdatacache= now;
       console.log(`✅ Cached market data for ${Object.keys(marketData).length} coins`);
+
+
+
       return marketData
 
 

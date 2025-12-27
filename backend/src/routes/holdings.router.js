@@ -2,6 +2,7 @@ import express from "express";
 import authMiddleware from '../middlewares/user.middleware.js';
 import { addHolding,updateHolding,deleteHolding,getHolding,PortfolioSummary } from "../controllers/holding.controller.js";
 import PortfolioHistory from "../models/PortfoliohHstory.js";
+import { exportexcel } from "../controllers/export.controller.js";
 
 
 
@@ -90,4 +91,7 @@ router.delete('/holdings/:holdingId', deleteHolding);
 router.get('/holdings', getHolding);
 router.get('/summary',PortfolioSummary);
 
+router.get('/export/excel',  exportexcel);
+
 export default router;
+  
