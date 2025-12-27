@@ -12,6 +12,7 @@ import ph from "../assets/ph.png";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Exportexcel from "../pages/Exportexcel.jsx";
 
 const SidebarContext = createContext();
 
@@ -49,6 +50,7 @@ export default function Sidebar() {
     { name: "Holdings", path: "/Holding", icon: Wallet },
     // { name: "Watchlist", path: "/Holdin ", icon: Heart },
     { name: "Market Coins", path: "/MarketCoins", icon: Bitcoin },
+    { name: "export", path: "/exportexcel", icon: Bitcoin },
   ];
 
   return (

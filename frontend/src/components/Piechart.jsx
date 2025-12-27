@@ -104,7 +104,7 @@ const Piechart = ({ data }) => {
               </div>
               <div className="text-right">
                 <span className="text-white text-sm font-bold block">{item.percent}%</span>
-                <span className="text-gray-500 text-[10px] font-medium">${item.value.toFixed(0)}</span>
+                {/* <span className="text-gray-500 text-[10px] font-medium">${item.value.toFixed(0)}</span> */}
               </div>
             </div>
           ))}

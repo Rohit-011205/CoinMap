@@ -12,6 +12,7 @@ import Signup from './pages/Signup.jsx'
 import DashboardLayout from './Layouts/DashboardLayout.jsx'
 import Holding from './pages/Holding.jsx'
 import MarketCoins from './pages/MarketCoins.jsx'
+import Exportexcel from './pages/Exportexcel.jsx'
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/MarketCoins" element={<MarketCoins />} />
             <Route path="/Holding" element={<Holding />} />
+            <Route path="/exportexcel" element={<Exportexcel />} />
             {/* <Route path="/Portfolio" element={<Portfolio />} /> */}
           </Route>
         </Route>
