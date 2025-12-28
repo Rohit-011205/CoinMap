@@ -1,7 +1,7 @@
 import express from "express";
 import authMiddleware from '../middlewares/user.middleware.js';
 import { addHolding,updateHolding,deleteHolding,getHolding,PortfolioSummary } from "../controllers/holding.controller.js";
-import PortfolioHistory from "../models/PortfoliohHstory.js";
+import PortfolioHistory from "../models/PortfolioHistory.js";
 import { exportexcel } from "../controllers/export.controller.js";
 
 
