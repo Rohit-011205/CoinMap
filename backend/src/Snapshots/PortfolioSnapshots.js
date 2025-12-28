@@ -2,7 +2,7 @@ import nodeCron from "node-cron";
 import PortfolioHistory from "../models/PortfolioHistory.js";
 import User from "../models/user.model.js";
 import Holding from "../models/holding.model.js";
-import { getMarketdata, globalMarketCache, globalCacheTime } from "../services/Priceservice.js";
+import { getMarketdata } from "../services/Priceservice.js";
 import { calculatePortfolioMetrics } from "../services/Portfoliocalculator.js";
 
 
@@ -52,7 +52,7 @@ export const HistorySnapshot = () => {
             if (attempt < maxretry) {
               console.log(`⏳ Waiting 2min before attempt ${attempt + 1}...`);
               await new Promise((resolve) =>
-                setTimeout(resolve, 2 * 60 * 1000)
+                setTimeout(resolve, 60 * 1000)
               );
               continue;
             }
@@ -69,9 +69,9 @@ export const HistorySnapshot = () => {
         }
 
 
-        globalMarketCache = marketData;
-        globalCacheTime = Date.now();
-        console.log('🌍 Cron updated global market cache');
+        // globalMarketCache = marketData;
+        // globalCacheTime = Date.now();
+        // console.log('🌍 Cron updated global market cache');
 
         // if (error.response?.status === 429) {
         //   console.warn("Rate limited! Serving stale data.");
