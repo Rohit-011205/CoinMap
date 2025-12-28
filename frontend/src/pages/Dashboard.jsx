@@ -90,7 +90,7 @@ const Dashboard = () => {
       }
     } catch (error) {
       setError(error.response?.data?.message || "Failed to load portfolio");
-      if (err.response?.status === 429) {
+      if (error.response?.status === 429) {
         toast.error("Too many requests. Please wait a moment.", { id: "rate-limit" });
         setError("Rate limited by provider");
       } else {

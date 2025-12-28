@@ -4,7 +4,7 @@ import {
   Wallet,
   ChevronFirst,
   Bitcoin,
-  ChevronLast, LogOut,
+  ChevronLast, LogOut,ScrollText,
 } from "lucide-react";
 import { createContext, useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -50,7 +50,7 @@ export default function Sidebar() {
     { name: "Holdings", path: "/Holding", icon: Wallet },
     // { name: "Watchlist", path: "/Holdin ", icon: Heart },
     { name: "Market Coins", path: "/MarketCoins", icon: Bitcoin },
-    { name: "export", path: "/exportexcel", icon: Bitcoin },
+    { name: "export", path: "/exportexcel", icon: ScrollText },
   ];
 
   return (
