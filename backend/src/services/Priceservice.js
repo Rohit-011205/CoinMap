@@ -9,8 +9,10 @@ const SYMBOL_ID_OVERRIDES = {
   ETH: "ethereum",
 };
 
-let globalMarketCache = {};
-let globalCacheTime = 0;
+// ✅ FIXED
+export let globalMarketCache = {};
+export let globalCacheTime = null;
+
 const GLOBAL_CACHE_DURATION = 5 * 60 * 1000;
 
 
@@ -124,4 +126,4 @@ export const getMarketdata = async (symbols) => {
   }
 }
 
-export { globalMarketCache, globalCacheTime };
+// export { globalMarketCache, globalCacheTime };

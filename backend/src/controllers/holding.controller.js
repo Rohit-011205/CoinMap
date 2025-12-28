@@ -150,7 +150,7 @@ export const PortfolioSummary = async (req, res) => {
             })
         }
 
-        const symbols =[...new Set (holdings.map(h => h.symbol.toUpperCase()))];
+        const symbols = [...new Set(holdings.map(h => h.symbol.toUpperCase()))];
 
         console.log("SYMBOLS:", symbols);
         console.log("TYPE:", typeof symbols[0]);
@@ -169,47 +169,47 @@ export const PortfolioSummary = async (req, res) => {
             if (!marketInfo) {
                 console.warn(`No market data for ${holding.symbol} - using stored price`);
             }
-                // const currentPrice = holding.currentPrice;
-                const currentPrice =
-    marketInfo && typeof marketInfo.currentPrice === "number"
-        ? marketInfo.currentPrice
-        : holding.currentPrice;
+            // const currentPrice = holding.currentPrice;
+            const currentPrice =
+                marketInfo && typeof marketInfo.currentPrice === "number"
+                    ? marketInfo.currentPrice
+                    : holding.currentPrice;
 
-                // const Change24hPercent = market?.PriceChangePercentage24h || 0;
+            // const Change24hPercent = market?.PriceChangePercentage24h || 0;
 
 
 
-                const currentValue = holding.quantity * currentPrice;
-                const investedValue = holding.quantity * holding.buyPrice;
-                const pnl = currentValue - investedValue;
-                const pnlPercent = investedValue ? (pnl / investedValue) * 100 : 0;
-                totalPortfolioValue += currentValue;
-                totalInvestment += investedValue;
+            const currentValue = holding.quantity * currentPrice;
+            const investedValue = holding.quantity * holding.buyPrice;
+            const pnl = currentValue - investedValue;
+            const pnlPercent = investedValue ? (pnl / investedValue) * 100 : 0;
+            totalPortfolioValue += currentValue;
+            totalInvestment += investedValue;
 
-                return {
-                    _id: holding._id,
-                    symbol: holding.symbol,
-                    name: holding.name,
-                    quantity: holding.quantity,
-                    buyPrice: holding.buyPrice,
-                    currentPrice: Number(currentPrice.toFixed(3)),
+            return {
+                _id: holding._id,
+                symbol: holding.symbol,
+                name: holding.name,
+                quantity: holding.quantity,
+                buyPrice: holding.buyPrice,
+                currentPrice: Number(currentPrice.toFixed(3)),
 
-                    high24h: marketInfo?.high24h || null,
-                    low24h: marketInfo?.low24h || null,
-                    priceChange24h: marketInfo?.priceChange24h || 0,
-                    priceChangePercentage24h: marketInfo?.priceChangePercentage24h ?? 0,
+                high24h: marketInfo?.high24h || null,
+                low24h: marketInfo?.low24h || null,
+                priceChange24h: marketInfo?.priceChange24h || 0,
+                priceChangePercentage24h: marketInfo?.priceChangePercentage24h ?? 0,
 
-                    currentValue: Number(currentValue.toFixed(3)),
-                    investedValue: Number(investedValue.toFixed(3)),
-                    pnl: Number(pnl.toFixed(3)),
-                    pnlPercent: Number(pnlPercent.toFixed(3)),
+                currentValue: Number(currentValue.toFixed(3)),
+                investedValue: Number(investedValue.toFixed(3)),
+                pnl: Number(pnl.toFixed(3)),
+                pnlPercent: Number(pnlPercent.toFixed(3)),
 
-                    image: marketInfo?.image || null,
-                };
+                image: marketInfo?.image || null,
+            };
 
-            })
+        })
 
-            // const currentPrice = marketInfo.currentPrice ?? holding.currentPrice;
+        // const currentPrice = marketInfo.currentPrice ?? holding.currentPrice;
 
         // const totalInvestment = holdingsPnL.reduce((sum, h) => sum + h.investedValue, 0);
         const totalPnL = totalPortfolioValue - totalInvestment;
@@ -221,13 +221,14 @@ export const PortfolioSummary = async (req, res) => {
 
         holdingsPnL.forEach((h) => {
             const market = marketData[h.symbol];
+            if(!market) return;
             const weight = totalPortfolioValue > 0 ? h.currentValue / totalPortfolioValue : 0;
 
             const priceChange24h = market?.priceChange24h || 0;
             total24hChange += weight * priceChange24h;
 
-            total24hChangePercent +=
-                weight * (market.priceChangePercentage24h || 0);
+            total24hChangePercent += weight * ((market?.priceChangePercentage24h) || 0);
+
         })
 
         const change24hPercent = total24hChangePercent;
@@ -306,6 +307,7 @@ export const PortfolioSummary = async (req, res) => {
 
     // }
     catch (error) {
+        console.error("Portfolio Summary Error:", error);
         res.status(500).json({
             success: false,
             message: error.message,
