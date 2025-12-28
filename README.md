@@ -54,14 +54,25 @@ JWT-based authentication with bcrypt password hashing and protected routes.
 ✅ **Responsive Design**  
 Mobile-first UI built with Tailwind CSS and Recharts for data visualization.
 
-✅ **Trending Cryptocurrencies**  
-Browse top 20+ cryptocurrencies by market cap with live price updates.
+✅ **Explore Cryptocurrencies**  
+Browse top 20+ cryptocurrencies by market cap with live price updates. And add it to portfolio
+<img width="1919" height="911" alt="image" src="https://github.com/user-attachments/assets/eef69d32-ff22-43c3-bafb-92fa30f19bc9" />
+<img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/3bf7ae73-4a64-415c-9778-1f59104e556b" />
+
+
 
 ✅ **Real-time Price Refresh**  
 Portfolio prices refresh automatically every 30 seconds using latest market data.
 
-✅ **Smart Backend Caching**  
-In-memory caching layer minimizes external API calls while keeping prices fresh.
+✅ **Smart Backend Caching**  +
++In-memory caching layer minimizes external API calls while keeping prices fresh.
+
+✅ **Export to CSV**
+Download your portfolio data as CSV file for analysis & tax records
+<img width="1919" height="909" alt="image" src="https://github.com/user-attachments/assets/bf783333-2d03-4f9f-832a-84dfe6947cbf" />
+<img width="1908" height="896" alt="image" src="https://github.com/user-attachments/assets/4805622a-5c49-4e3d-b045-536d585c69e0" />
+
+
 
 
 ## 🛠 Tech Stack & Tools Used
@@ -265,7 +276,54 @@ Contributions are welcome and appreciated.
 - API rate-limit monitoring dashboard
 
 ---
+##⚙️ Installation & Setup
+-
 
+Follow these steps to set up the project locally 👇
+
+📥 Clone the Repository
+
+git clone https://github.com/Rohit-011205/CoinMap.git
+cd CoinMap
+
+---
+🛠 Backend Setup
+-
+cd backend
+npm install
+
+Create a .env file inside the backend folder:
+PORT=5000
+MONGODB_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_super_secret_jwt_key_min_32_chars
+NODE_ENV=development
+CLIENT_URL=http://localhost:5173
+COINGECKO_API_KEY=optional_api_key
+
+Start the backend server:
+npm run dev
+
+--------------------------------
+🎨 Frontend Setup
+--------------------------------
+cd ../frontend
+npm install
+
+Create a .env file inside the frontend folder:
+VITE_API_URL=http://localhost:5000/api
+VITE_CURRENCY=$
+
+Run the frontend:
+npm run dev
+
+---
+🌐 Open the App
+---
+Frontend: http://localhost:5173
+Backend: http://localhost:5000
+
+``
+---
 ## 📄 License
 
 Copyright (c) 2025 Rohit Kadam
