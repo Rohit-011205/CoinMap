@@ -1,13 +1,14 @@
 import axios from "axios";
 
-const COINGECKOAPI = "https://api.coingecko.com/api/v3";
+const API_KEY = process.env.COINGECKO_API_KEY;
+const COINGECKOAPI = process.env.COINGECKO_API_URL;
 
 const LIMIT = 99;
 
 let topcoincache = null;
 let topcoincachetime = null;
 
-const cacheduration = 15* 60* 1000;
+const cacheduration = 15 * 60 * 1000;
 
 let isFetching = false;
 
@@ -17,8 +18,8 @@ export const getMarketCoins = async (req, res) => {
         const setlimit = Number(req.query.LIMIT) || LIMIT;
         const now = Date.now()
 
-        if(topcoincache && (isFetching || (topcoincachetime && now - topcoincachetime < cacheduration))){
-             console.log(`✅ Using cached top coins (age: ${Math.round((now - topcoincachetime) / 1000)}s)`);
+        if (topcoincache && (isFetching || (topcoincachetime && now - topcoincachetime < cacheduration))) {
+            console.log(`✅ Using cached top coins (age: ${Math.round((now - topcoincachetime) / 1000)}s)`);
             return res.json({
                 success: true,
                 data: topcoincache,
@@ -26,7 +27,7 @@ export const getMarketCoins = async (req, res) => {
             });
         }
 
-        isFetching= true
+        isFetching = true
 
         const response = await axios.get(`${COINGECKOAPI}/coins/markets`, {
             params: {
@@ -36,8 +37,10 @@ export const getMarketCoins = async (req, res) => {
                 page: 1,
                 sparkline: false,
                 price_change_percentage: "24h",
+            }, headers: {
+                'x-cg-demo-api-key': API_KEY  // ✅ Demo header (NOT pro)
             },
-         timeout: 10000
+            timeout: 10000
         })
 
         topcoincache = response.data;

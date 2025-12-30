@@ -1,7 +1,8 @@
 import express from "express";
 import axios from "axios";
 
-const COINGECKOAPI = "https://api.coingecko.com/api/v3";
+const API_KEY = process.env.COINGECKO_API_KEY;
+const COINGECKOAPI = process.env.COINGECKO_API_URL;
 
 // First I will create cache variables because we dont want to hit our free API rate limits
 let coinlistcache = null
@@ -35,7 +36,10 @@ export const getCoins = async () => {
             {
                 params: {
                     include_platform: false
-                }
+                },
+                headers: {
+                    'x-cg-demo-api-key': API_KEY  // ✅ Demo header (NOT pro)
+                },
             }
         );
 

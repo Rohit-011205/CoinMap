@@ -2,7 +2,10 @@ import express from 'express';
 import axios from 'axios';
 import { findCoinIDs } from './Coinservice.js';
 
-const COINGECKOAPI = "https://api.coingecko.com/api/v3";
+
+const API_KEY = process.env.COINGECKO_API_KEY;
+const COINGECKOAPI = process.env.COINGECKO_API_URL;
+
 
 const SYMBOL_ID_OVERRIDES = {
   BTC: "bitcoin",
@@ -68,6 +71,10 @@ export const getMarketdata = async (symbols) => {
         sparkline: false,
         locale: 'en',
       },
+      headers: {
+        'x-cg-demo-api-key': API_KEY  // ✅ Demo header (NOT pro)
+      },
+      timeout: 10000
     })
 
     const marketData = {}
