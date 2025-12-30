@@ -24,7 +24,8 @@ There is **no dependency on exchanges**, and user data remains **private and ful
 
 ✅ **Real-time Portfolio Dashboard**  
 View total portfolio value, 24h change, and overall profit/loss at a glance.
-<img width="1919" height="905" alt="Screenshot 2025-12-27 103631" src="https://github.com/user-attachments/assets/656af060-c59e-4348-b11f-2c098210f78b" />
+<img width="1919" height="872" alt="image" src="https://github.com/user-attachments/assets/30d4c3d5-b0b3-47a0-814d-d3f829cb64bb" />
+
 
 
 ✅ **Live Market Data**  
