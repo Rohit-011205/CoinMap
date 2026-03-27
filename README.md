@@ -12,7 +12,7 @@ After weeks of building, debugging, and strengthening my full-stack development 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit-blueviolet?style=for-the-badge)](https://coinmap-provide.vercel.app/)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/Rohit-011205/CoinMap)
 </div>
----
+
 
 ## 💡 Why CoinMap?
 
