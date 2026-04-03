@@ -30,7 +30,28 @@ export const addHolding = async (req, res) => {
 
             })
         }
+        
+        const existing = await Holding.findOne({
+            UserID,
+            symbol: symbol.toUpperCase(),
+        })
 
+        if(existing){
+            const oldQty = existing.quantity;
+            const newQty = parseFloat(quantity);
+            const totalQty = oldQty + newQty;
+
+            // Weighted average buy price
+            existing.buyPrice = ((existing.buyPrice * oldQty) + (parseFloat(buyPrice) * newQty)) / totalQty;
+            existing.quantity = totalQty;
+            existing.currentPrice = currentPrice || existing.currentPrice;
+
+            await existing.save();
+            return res.status(200).json({
+                success: true,
+                message: "Holding updated successfully",
+            });
+        }
 
         const addHolding = new Holding({
             UserID: req.UserID,

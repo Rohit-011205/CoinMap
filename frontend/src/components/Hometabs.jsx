@@ -20,55 +20,58 @@ const HomeTabs = () => {
             }
         }
         fetchMarketCoins()
+
+        const interval = setInterval(fetchMarketCoins,60*1000);
+        return () => clearInterval(interval);
     }, []);
 
-    const displayCoins = show 
-  ? (Array.isArray(coins) ? coins : []) 
-  : (Array.isArray(coins) ? coins.slice(0, 8) : []);
+    const displayCoins = show
+        ? (Array.isArray(coins) ? coins : [])
+        : (Array.isArray(coins) ? coins.slice(0, 8) : []);
 
     return (
-        <div className="mt-20 p-6 md:p-10 bg-transparent min-h-screen bg-transparent max-w-screen-2xl container mx-auto md:px-20 px-6">
+        <div className="mt-20 p-6 md:p-10 bg-transparent min-h-screen  max-w-screen-2xl container mx-auto md:px-20 px-6">
 
             {/* <div className="back "> */}
 
-            
-<div className="mb-16">
- 
-  <div className="w-12 h-[1px] bg-purple-600 mb-8"></div>
-  
-  <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
-    <div className="max-w-2xl">
- 
-      <div className="flex items-center gap-3 mb-4">
-        <div className="flex items-center gap-2 px-2 py-1 bg-zinc-900/50 border border-zinc-800 rounded">
-            <span className="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
-            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-400">Live Feed</span>
-        </div>
-        <span className="h-px w-8 bg-zinc-800"></span>
-      </div>
 
-      <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">
-        Market <span className="text-zinc-500">Overview</span>
-      </h2>
+            <div className="mb-16">
 
-      <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-md">
-        A curated selection of high-performing digital assets, updated in real-time to reflect current market volatility.
-      </p>
-    </div>
+                <div className="w-12 h-[1px] bg-purple-600 mb-8"></div>
 
- 
-    <div className="hidden md:block text-right">
-      <div className="space-y-1">
-        <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-semibold">Active Inventory</p>
-        <div className="text-xl font-light text-white tracking-widest">
-          {displayCoins.length} <span className="text-zinc-700 mx-1">/</span> {coins.length}
-        </div>
-      </div>
-    </div>
-  </div>
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+                    <div className="max-w-2xl">
 
-  <div className="w-full h-px bg-zinc-900 mt-10"></div>
-</div>
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="flex items-center gap-2 px-2 py-1 bg-zinc-900/50 border border-zinc-800 rounded">
+                                <span className="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+                                <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-400">Live Feed</span>
+                            </div>
+                            <span className="h-px w-8 bg-zinc-800"></span>
+                        </div>
+
+                        <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">
+                            Market <span className="text-zinc-500">Overview</span>
+                        </h2>
+
+                        <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-md">
+                            A curated selection of high-performing digital assets, updated in real-time to reflect current market volatility.
+                        </p>
+                    </div>
+
+
+                    <div className="hidden md:block text-right">
+                        <div className="space-y-1">
+                            <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-semibold">Active Inventory</p>
+                            <div className="text-xl font-light text-white tracking-widest">
+                                {displayCoins.length} <span className="text-zinc-700 mx-1">/</span> {coins.length}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="w-full h-px bg-zinc-900 mt-10"></div>
+            </div>
 
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

@@ -4,8 +4,6 @@ import { addHolding,updateHolding,deleteHolding,getHolding,PortfolioSummary } fr
 import PortfolioHistory from "../models/PortfolioHistory.js";
 import { exportexcel } from "../controllers/export.controller.js";
 
-
-
 const router = express.Router();
 router.use(authMiddleware);
 

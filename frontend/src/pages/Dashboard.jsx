@@ -68,7 +68,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchPortfolioData();
-    const interval = setInterval(fetchPortfolioData, 30000);
+    const interval = setInterval(fetchPortfolioData, 60*1000);
     return () => clearInterval(interval);
   }, [])
 

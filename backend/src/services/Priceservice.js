@@ -16,13 +16,13 @@ const SYMBOL_ID_OVERRIDES = {
 export let globalMarketCache = {};
 export let globalCacheTime = null;
 
-const GLOBAL_CACHE_DURATION = 5 * 60 * 1000;
+const GLOBAL_CACHE_DURATION = 1 * 60 * 1000;
 
 
 let marketdatacache = {}
 let lastmarketdatacache = 0
 
-const timestampmarketdata = 5 * 60 * 1000;
+const timestampmarketdata = 1 * 60 * 1000;
 
 export const getMarketdata = async (symbols) => {
   try {

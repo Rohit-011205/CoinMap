@@ -69,8 +69,8 @@ const Tablehold = ({ data = [], onDataChange }) => {
 
 
     } catch (error) {
-      console.error("Update error:", err);
-      toast.error(err.response?.data?.message || "Update failed");
+      console.error("Update error:", error);
+      // toast.error(err.response?.data?.message || "Update failed");
     } finally {
       setLoading(false)
     }

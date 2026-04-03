@@ -9,11 +9,20 @@ const AddHoldingModal = ({ coin, isOpen, onClose, onSuccess }) => {
   const [buyDate, setBuyDate] = useState(new Date().toISOString().split("T")[0]);
   const [loading, setLoading] = useState(false);
 
+
+
+  // useEffect(() => {
+  //   if (coin?.current_price) {
+  //     setBuyPrice(coin.current_price);
+  //   }
+  // }, [coin]);
   useEffect(() => {
-    if (coin?.current_price) {
-      setBuyPrice(coin.current_price);
+    if (isOpen && coin) {
+      setQuantity("");                        // reset quantity
+      setBuyPrice(coin.current_price || ""); // set fresh price
+      setBuyDate(new Date().toISOString().split("T")[0]); // reset date
     }
-  }, [coin]);
+  }, [coin?.id, isOpen]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,9 +51,7 @@ const AddHoldingModal = ({ coin, isOpen, onClose, onSuccess }) => {
       if (res.data.success) {
         toast.success("Holding added successfully!");
         onSuccess?.();
-        onClose();
-        setQuantity("");
-        setBuyPrice(coin.current_price);
+        setTimeout(() => handleClose(), 300);
       } else {
         toast.error(res.data.message || "Failed to add holding");
       }
@@ -54,6 +61,11 @@ const AddHoldingModal = ({ coin, isOpen, onClose, onSuccess }) => {
     } finally {
       setLoading(false);
     }
+  };
+  const handleClose = () => {
+    setQuantity("");
+    setBuyPrice("");
+    onClose();
   };
 
   if (!isOpen || !coin) return null;
@@ -68,7 +80,7 @@ const AddHoldingModal = ({ coin, isOpen, onClose, onSuccess }) => {
             <p className="text-gray-400 text-sm mt-1">{coin.name} ({coin.symbol.toUpperCase()})</p>
           </div>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="text-gray-500 hover:text-white transition-colors"
           >
             <X size={24} />
@@ -151,7 +163,7 @@ const AddHoldingModal = ({ coin, isOpen, onClose, onSuccess }) => {
           {/* Cancel Button */}
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             className="w-full py-3 bg-gray-700 hover:bg-gray-600 text-white font-bold rounded-xl transition-all"
           >
             Cancel
